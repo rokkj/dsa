@@ -10,6 +10,11 @@ class LinkedList:
         self.tail = new_node
         self.length = 1
 
+    def printlist(self):
+        temp = self.head
+        while temp is not None:
+            print(temp.value)
+            temp= temp.next
 
 my_linkedlist = LinkedList(4)
-print(my_linkedlist.head.value)
+my_linkedlist.printlist()
