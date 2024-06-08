@@ -81,22 +81,36 @@ class LinkedList:
             return True
         return False
 
-        def insert(self, index, value):
-            if index < 0 or index > self.length:
-                return False
-            if index == 0:
-                return self.prepend(value)
-            if index == self.length:
-                return self.append(value)
-            new_node = Node(value)
-            temp = self.get(index - 1)
-            new_node.next = temp.next
-            temp.next = new_node
-            self.length += 1   
-            return True
+    def insert(self, index, value):
+        if index < 0 or index > self.length:
+            return False
+        if index == 0:
+            return self.prepend(value)
+        if index == self.length:
+            return self.append(value)
+        new_node = Node(value)
+        temp = self.get(index - 1)
+        new_node.next = temp.next
+        temp.next = new_node
+        self.length += 1
+        return True
     
+    def reverse(self):
+        if self.length == 0:
+            return False
+        temp = self.head
+        self.head = self.tail
+        self.tail = temp
+        after = temp.next
+        before = None
+        for _ in range(self.length):
+            after = temp.next
+            temp.next = before
+            before = temp
+            temp = after
+
 my_linkedlist = LinkedList(1)
 my_linkedlist.append(2)
 my_linkedlist.printlist()
-my_linkedlist.set_value(1,22)
+my_linkedlist.reverse()
 my_linkedlist.printlist()
