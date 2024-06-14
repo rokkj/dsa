@@ -17,7 +17,7 @@ class BinarySearchTree:
         while(True):
             if temp.value == new_node.value:
                 return False
-            if temp.value < new_node.value:
+            if new_node.value < temp.value:
                 if temp.left == None:
                     temp.left = new_node
                     return True
@@ -29,4 +29,10 @@ class BinarySearchTree:
                 temp = temp.right
 
 my_tree = BinarySearchTree()
-print(my_tree.root)
+my_tree.insert(2)
+my_tree.insert(1)
+my_tree.insert(3)
+
+print(my_tree.root.value)
+print(my_tree.root.left.value)
+print(my_tree.root.right.value)
