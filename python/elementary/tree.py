@@ -9,7 +9,6 @@ class BinarySearchTree:
     def __init__(self):
         self.root = None
 
-
     def insert(self, value):
         new_node = Node(value)
         if self.root is None:
@@ -30,7 +29,6 @@ class BinarySearchTree:
                     return True
                 temp = temp.right
 
-
     def contains(self, value):
         temp = self.root
         while (temp is not None):
@@ -41,7 +39,6 @@ class BinarySearchTree:
             else:
                 return True
         return False
- 
 
     def __r_contains(self, current_node, value):
         if current_node == None: 
@@ -55,8 +52,6 @@ class BinarySearchTree:
 
     def r_contains(self, value):
         return self.__r_contains(self.root, value)
-
- 
           
     def __r_insert(self, current_node, value):
         if current_node == None: 
@@ -101,49 +96,27 @@ class BinarySearchTree:
     def delete_node(self, value):
         self.root = self.__delete_node(self.root, value)
 
-
-
+    def BFS(self):
+        current_node = self.root
+        queue = []
+        result = []
+        queue.append(current_node)
+        while len(queue) > 0:
+            current_node = queue.pop(0)
+            result.append(current_node.value)
+            if current_node.left is not None:
+                queue.append(current_node.left)
+            if current_node.right is not None:
+                queue.append(current_node.right)
+        return result
 
 my_tree = BinarySearchTree()
-my_tree.r_insert(2)
-my_tree.r_insert(1)
-my_tree.r_insert(3)
+my_tree.insert(47)
+my_tree.insert(21)
+my_tree.insert(76)
+my_tree.insert(18)
+my_tree.insert(27)
+my_tree.insert(52)
+my_tree.insert(82)
 
-"""
-       2
-      / \
-     1   3
-"""
-
-print("root:", my_tree.root.value)
-print("root.left =", my_tree.root.left.value)
-print("root.right =", my_tree.root.right.value)
-
-
-my_tree.delete_node(2)
-
-"""
-       3
-      / \
-     1   None
-"""
-
-
-print("\nroot:", my_tree.root.value)
-print("root.left =", my_tree.root.left.value)
-print("root.right =", my_tree.root.right)
-
-
-
-"""
-    EXPECTED OUTPUT:
-    ----------------
-	root: 2
-	root.left = 1
-	root.right = 3
-
-	root: 3
-	root.left = 1
-	root.right = None
-
-"""
+print(my_tree.BFS())
