@@ -130,7 +130,17 @@ class BinarySearchTree:
                 traverse(current_node.right)
             result.append(current_node.value)
         traverse(self.root)
+        return result
 
+    def dfs_in_order(self):
+        result = []
+        def traverse(current_node):
+            if current_node.left is not None:
+                traverse(current_node.left)
+            result.append(current_node.value)
+            if current_node.right is not None:
+                traverse(current_node.right)
+        traverse(self.root)
         return result
 
 my_tree = BinarySearchTree()
@@ -142,4 +152,4 @@ my_tree.insert(27)
 my_tree.insert(52)
 my_tree.insert(82)
 
-print(my_tree.dfs_post_order())
+print(my_tree.dfs_in_order())
